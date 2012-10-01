@@ -5,22 +5,23 @@
 
 include_once 'wp-content/plugins/Lojas/Controllers/LojasController.php';
 $Lojas = new Lojas();
-
-
 $dadosCidades = $Lojas->obterCidades();
 
 get_header(); ?>
-		<div id="primary">
-			<div id="content" role="main">
+       <div class="meio clearfix">
+	        <div class="conteudo-1005">
+	        	<div class="titulo-ofertas">
+		        	<h2>Nossas Lojas</h2>
+	        	</div>
+	        	<div class="conteudo clearfix">
                <?php
                if($dadosCidades)
                {
                    foreach($dadosCidades as $cidade)
                    {?>
-                      <div class="cidade">
-                          <div class="nome-cidade">
-                                <?php echo ucfirst($cidade->nome); ?>    
-                          </div>
+                      <div class="conteudo-endereco clearfix">
+   
+                          <h2><?php echo ucfirst($cidade->nome); ?>   </h2> 
                           
                           <div class="lojas-cidade" >
                               <?php 
@@ -30,43 +31,39 @@ get_header(); ?>
                                     {
                                         foreach($dadosLojas as $lojas)
                                         {?>
-                                           <div class="loja">
-                                               <?php 
-                                                    if($lojas->farmacia_popular == 'sim')
+                                               <?php  if($lojas->farmacia_popular == 'sim')
                                                     {?>
-                                                        <div class="banner-loja farmacia-popular"></div>
+                                                        <div class="box-endereco ativo">
                                                     <?php
                                                     }
                                                     else 
                                                     {?>
-                                                       <div class="banner-loja"></div>
+                                                       <div class="box-endereco">
                                                     <?php 
                                                     }
                                                ?>
-                                               <div class="nome-loja">
+                                               <h3>
                                                    <?php echo $lojas->nome; ?>
-                                               </div>
-                                               <div class="endereco-loja">
+                                               </h3>
+                                               <p class="endereco">
                                                    <?php echo $lojas->endereco; ?>
-                                               </div>
+                                               </p>
                                                
-                                               <div class="telefone">
+                                               <p class="telefone">
                                                    <?php echo $lojas->telefone; ?>
-                                               </div>
+                                               </p>
                                            </div>
-                                           
                                         <?php 
                                         }
                                     }
                               ?>
                           </div>
                       </div>
-                      
                    <?php 
                    }
                }
               ?>
-			</div><!-- #content -->
-		</div><!-- #primary -->
-<?php get_sidebar(); ?>
+	        	<div class="fio"></div>
+	        </div>
+        </div>
 <?php get_footer(); ?>
