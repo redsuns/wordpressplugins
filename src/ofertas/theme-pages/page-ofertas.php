@@ -3,13 +3,13 @@
  * Template Name: Ofertas
  */
 
+get_header(); 
+
 include_once 'wp-content/plugins/ofertas/core/ofertas-core.php';
 $Ofertas = new Ofertas();
 
 $dadosOfertas = $Ofertas->obterOfertas('','ativa');
-$dadosImagens = $Ofertas->obterImagens($dadosOfertas->id);
-
-get_header(); ?>
+?>
 		<div id="primary">
 			<div id="content" role="main">
                <?php
@@ -18,7 +18,7 @@ get_header(); ?>
                    foreach($dadosOfertas as $ofertas)
                    {?>
                       <div class="oferta">
-                          <div class="nome-parceiro">
+                          <div class="mes-atual">
                                 <?php echo $ofertas->mes; ?>  
                           </div>
                           
@@ -27,16 +27,21 @@ get_header(); ?>
                           </div>
                           <div class="imagens_miniaturas" >
                               <?php
+                                    
+                                    $dadosImagens = $Ofertas->obterImagens($ofertas->id);
                                     foreach($dadosImagens as $imagem)
                                     {?>
                                        <div class="miniatura">
-                                           <img src="/wp-content/uploads/ofertas/<?php echo $imagem->imagem; ?>" 
+                                           <a href="javascript:;">
+                                           <img src="./wp-content/uploads/ofertas/<?php echo $imagem->imagem; ?>" 
                                                 title="<?php echo $imagem->imagem; ?>" 
-                                                onclick="imagemDestaque('<?php echo $imagem->imagem ?>')" />
+                                                onclick="imagemDestaque('<?php echo $imagem->imagem ?>')"
+                                                width="152" />
+                                           </a>
                                        </div>
                                     <?php 
                                     }    
-                              ?>
+                          ?>
                           </div>
                       </div>
                    <?php 
@@ -50,8 +55,9 @@ get_header(); ?>
 <script type="text/javascript">
     function imagemDestaque(img)
     {
-        var imagem = "<?php echo get_bloginfo('url'); ?>wp-content/uploads/ofertas/"+img;
-        jQuery('.imagem_principal').attr('');
-        jQuery('.imagem_principal').attr(imagem);
+        var imagem = "<div class='imagem'>";
+            imagem += "<img src='<?php echo get_bloginfo('url'); ?>/wp-content/uploads/ofertas/"+img+"'>";
+            imagem += "</div>";
+        jQuery('.imagem_principal').html(imagem);
     }
 </script>
