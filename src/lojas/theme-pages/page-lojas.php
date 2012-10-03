@@ -3,7 +3,7 @@
  * Template Name: Lojas
  */
 
-include_once 'wp-content/plugins/Lojas/Controllers/LojasController.php';
+include_once 'wp-content/plugins/lojas/core/coreLojas.php';
 $Lojas = new Lojas();
 $dadosCidades = $Lojas->obterCidades();
 

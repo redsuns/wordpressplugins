@@ -1,4 +1,14 @@
 <?php
+
+if(is_admin())
+{
+	include_once '../wp-content/plugins/ofertas/sources/libs/resize/core/class.simpleImage.php';
+}
+else 
+{
+	include_once './wp-content/plugins/ofertas/sources/libs/resize/core/class.simpleImage.php';	
+}
+
  class Ofertas
  {
      public $name = 'Ofertas';
@@ -17,7 +27,7 @@
             if( $this->verificaExistenciaOferta($dadosOferta) )
                 echo "<meta http-equiv='refresh' content='1; ?page=ofertas/ofertas.php' ><div class='update-nag' style='background: green; color: white; font-size: 16px;'>Dados da oferta gravados com sucesso!</div>";
             else
-                echo "<div class='update-nag' style='background: orange; font-size: 16px;'>Não foi possível salvar os dados da oferta, por favor preencha todos os campos</div>";
+                echo "<div class='update-nag' style='background: orange; font-size: 16px;'>Não foi possível salvar os dados da oferta, por favor preencha todos os campos</div>";        
         }
      }
      
@@ -88,6 +98,19 @@
              }
          }
          return $dadosOfertas;
+     }
+     
+     public function obterPrimeiraImagem($idOferta)
+     {
+         $nomeImagem = '';
+         $obterImagens = "select * from imagens_ofertas where id_oferta=$idOferta order by id asc limit 0,1";
+         $obterImagens = mysql_query($obterImagens) or die('Erro: '.mysql_error());
+         if(mysql_affected_rows())
+         {
+             $dadosImagem = mysql_fetch_object($obterImagens);
+             $nomeImagem = $dadosImagem->imagem;
+         }
+         return $nomeImagem;
      }
      
      /**
@@ -211,21 +234,27 @@
      
 	 private function uploadImagens($dadosOferta)
 	 {
+	 	$Resize = new SimpleImage();
+		
 	    $pathToUpload = '../wp-content/uploads/ofertas/'; 
-        if( !is_dir($pathToUpload) )
-        {
-            @mkdir($pathToUpload);
-        }
-       
+		$pathToUploadThumbs = '../wp-content/uploads/ofertas/thumbs/'; 
+        
+        if( !is_dir($pathToUpload) ) @mkdir($pathToUpload);
+       	if( !is_dir($pathToUploadThumbs)) @mkdir($pathToUploadThumbs);
+		
 	 	if($_FILES)
         {
-            
             for( $cont = 0; $cont < count($_FILES['imagem']['name']); $cont++ )
             {
                if(eregi('image',$_FILES['imagem']['type'][$cont]))
                {
                    if(move_uploaded_file($_FILES['imagem']['tmp_name'][$cont], $pathToUpload.$_FILES['imagem']['name'][$cont]))
                    {
+                   	   // gerando miniaturas
+                   	   $Resize->load($pathToUpload.$_FILES['imagem']['name'][$cont]);
+                   	   $Resize->resizeToWidth('150');
+   					   $Resize->save($pathToUploadThumbs.$_FILES['imagem']['name'][$cont]);
+                   	   
                        $dadosImagemSalvar->nome = $_FILES['imagem']['name'][$cont];
                        $dadosImagemSalvar->id = $dadosOferta->id;
                        $this->salvaDadosImagem($dadosImagemSalvar);
@@ -247,7 +276,8 @@
         
         foreach($dadosImagens as $dadosImagens)
         {
-            @unlink('../wp-content/uploads/ofertas/'.$dadosImagens->imagem);    
+            @unlink('../wp-content/uploads/ofertas/'.$dadosImagens->imagem);
+			@unlink('../wp-content/uploads/ofertas/thumbs/'.$dadosImagens->imagem);    
         } 
 	 	
 	 }

@@ -3,7 +3,7 @@
  * Template Name: Parceiros
  */
 
-include_once 'wp-content/plugins/parceiros/core/parceiros-core.php';
+include_once 'wp-content/plugins/parceiros/core/coreParceiros.php';
 $Parceiros = new Parceiros();
 
 
@@ -15,7 +15,7 @@ get_header(); ?>
 	        <?php while ( have_posts() ) : the_post(); ?>
 	        	<div class="titulo-ofertas">
 		        	<h2><?php the_title(); ?></h2>
-	        	</div>
+	        	</div>
 	        	<div class="conteudo clearfix">
 	        		<?php the_content(); ?>
 	        		<div class="clear"></div>
