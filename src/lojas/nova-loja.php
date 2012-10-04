@@ -1,15 +1,15 @@
 <?php
 
-include_once 'core/lojas-core.php';
+include_once 'core/coreLojas.php';
 
 $cabecalho = '<h3>Bem vindo(a) ao cadastro de lojas, forneça os dados abaixo.</h3>';
 $botao = 'Gravar';
-if(!empty($_GET['id_loja']) && is_numeric($_GET['id_loja']))
+if(!empty($_GET['idLoja']) && is_numeric($_GET['idLoja']))
 {
-    $cabecalho = '<h3>Alterando loja com ID '.(int)$_GET['id_loja'].'</h3>';
+    $cabecalho = '<h3>Alterando loja com ID '.(int)$_GET['idLoja'].'</h3>';
     $botao = 'Gravar alterações';
 }
-$idLoja = isset($_GET['id_loja']) ? (int)$_GET['id_loja'] : '' ;
+$idLoja = isset($_GET['idLoja']) ? (int)$_GET['idLoja'] : '' ;
 
 $Loja = new Lojas();
 

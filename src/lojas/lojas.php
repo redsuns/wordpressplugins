@@ -1,14 +1,14 @@
 <?php
 
-include_once 'core/lojas-core.php';
+include_once 'core/coreLojas.php';
 
 $Lojas = new Lojas();
 
-if(isset($_GET['acao']) && is_numeric($_GET['id_loja']))
+if(isset($_GET['acao']) && is_numeric($_GET['idLoja']))
 {
     if($_GET['acao'] == 'remover')
     {
-        $idRemover = (int)$_GET['id_loja'];
+        $idRemover = (int)$_GET['idLoja'];
         if( $Lojas->remover($idRemover) )
         {
         ?>
@@ -75,8 +75,8 @@ if( $dadosLojas = $Lojas->obterLojas($ordenacaoBusca) )
                         <?php echo ucfirst($dadosLojas->farmacia_popular); ?>
                     </td>
                     <td>
-                        <a href="?page=lojas/nova-loja.php&id_loja=<?php echo (int)$dadosLojas->id; ?>">Editar</a> |
-                        <a href="?page=lojas/lojas.php&acao=remover&id_loja=<?php echo (int)$dadosLojas->id; ?>" onclick="return confirmaRemocao();">Remover</a>
+                        <a href="?page=lojas/nova-loja.php&idLoja=<?php echo (int)$dadosLojas->id; ?>">Editar</a> |
+                        <a href="?page=lojas/lojas.php&acao=remover&idLoja=<?php echo (int)$dadosLojas->id; ?>" onclick="return confirmaRemocao();">Remover</a>
                     </td>
                  </tr>
                  <?php
