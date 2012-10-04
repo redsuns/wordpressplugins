@@ -7,8 +7,11 @@
 /---------------------------------------------------------/
 1.1
 04/10/2012
-	Alterada ordenação de lojas. Agora lista primeiro as lojas de Curitiba
+	-> Alterada ordenação de lojas. Agora lista primeiro as lojas de Curitiba
 	separando as do centro com as dos demais bairros
+	-> Os bairros ganharam tratamento que possibilita a visualização agrupada de
+	suas lojas
+	-> Corrigido redirecionamento ao gravar uma nova loja
 
 /---------------------------------------------------------/
 1.1

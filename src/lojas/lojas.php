@@ -1,6 +1,6 @@
 <?php
 
-include_once 'core/coreLojas.php';
+include_once 'core/lojas-core.php';
 
 $Lojas = new Lojas();
 
@@ -35,7 +35,7 @@ if( $dadosLojas = $Lojas->obterLojas($ordenacaoBusca) )
             <thead>
                 <tr>
                     <th>
-                        Nome
+                        Bairro
                     </th>
                     <th>
                         Cidade

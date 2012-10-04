@@ -35,11 +35,19 @@
          return $dadosLoja;
      }
      
-     function obterCidades()
+     /**
+      * Ao buscar pelo nome da cidade, somente ela será listada
+      * Ao buscar por excessao somente aquela cidade não aparecerá na lista
+      */
+     function obterCidades($nomeCidade = null, $excessao = null)
      {
          $listaCidades = array();
+         $where = '';
          
-         $buscaCidades = "select distinct cidade as nome from lojas order by cidade asc";
+         if( $nomeCidade ) $where = " where cidade='$nomeCidade'";
+         if( $excessao ) $where = " where cidade!='$excessao'";
+         
+         $buscaCidades = "select distinct cidade as nome from lojas $where order by cidade asc";
          $buscaCidades =mysql_query($buscaCidades) or die('Erro: '.mysql_error());
          
          if(mysql_affected_rows())
@@ -50,6 +58,27 @@
              }
          }
          return $listaCidades;
+     }
+     
+     function obterBairros($nomeCidade, $excessao = null)
+     {
+         $listaBairros = array();
+         $where = '';
+         
+         $where = " where cidade='$nomeCidade'";
+         if( $excessao ) $where .= " and nome!='$excessao'";
+         
+         $buscaBairros = "select distinct nome from lojas $where order by nome asc";
+         $buscaBairros =mysql_query($buscaBairros) or die('Erro: '.mysql_error());
+         
+         if(mysql_affected_rows())
+         {
+             while($filaBairros = mysql_fetch_object($buscaBairros))
+             {
+                 $listaBairros[] = $filaBairros;
+             }
+         }
+         return $listaBairros;
      }
      
      function obterLojasPorCidade($nomeCidade)
@@ -69,12 +98,34 @@
          return $listaLojas;
      }
      
+     /**
+      *  Ao buscar por excessao somente o descrito bairro não aparecerá na lista
+      */
+     function obterLojasPorBairro($nomeBairro,$cidade = null)
+     {
+        $listaLojas = array();
+        $where = "where nome='$nomeBairro' ";
+        if( $cidade ) $where .= "and cidade='$cidade'";
+         
+        $buscaLojas = "select * from lojas $where order by nome asc";
+        $buscaLojas = mysql_query($buscaLojas) or die('Erro: '.mysql_error());
+         
+        if(mysql_affected_rows())
+        {
+            while($filaLojas = mysql_fetch_object($buscaLojas))
+            {
+                $listaLojas[] = $filaLojas;
+            }
+        }
+        return $listaLojas;
+    }
+     
      
      function verificaExistenciaLoja($dadosLoja)
      {
          if($dadosLoja->nome && $dadosLoja->endereco)
          {
-            $verificaloja = "select * from lojas where nome='$dadosLoja->nome'";
+            $verificaloja = "select * from lojas where endereco='$dadosLoja->endereco'";
          
              $verificaloja = mysql_query($verificaloja) or die('Erro: '.mysql_error());
              

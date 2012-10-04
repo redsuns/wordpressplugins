@@ -1,6 +1,6 @@
 <?php
 
-include_once 'core/coreLojas.php';
+include_once 'core/lojas-core.php';
 
 $cabecalho = '<h3>Bem vindo(a) ao cadastro de lojas, forneça os dados abaixo.</h3>';
 $botao = 'Gravar';
@@ -26,7 +26,7 @@ if(isset($_POST['nome']) && isset($_POST['cidade']))
     
     if( $Loja->verificaExistenciaLoja($dadosLoja) )
     {
-        echo "<div class='update-nag' style='background: green; color: white; font-size: 16px;'>Dados da loja gravados com sucesso!</div>";
+        echo "<meta http-equiv='refresh' content='1; ?page=lojas/lojas.php' ><div class='update-nag' style='background: green; color: white; font-size: 16px;'>Dados da loja gravados com sucesso!</div>";
     }
     else
     {
@@ -49,7 +49,7 @@ if(isset($_POST['nome']) && isset($_POST['cidade']))
                 <tr>
                     <td>
                         <input type="hidden" name="idLoja" value="<?php echo $idLoja; ?>" />
-                        Nome (Descrição da loja)<br />
+                        Bairro<br />
                         <input type="text" name="nome" maxlength="255" value="<?php echo @$dadosLoja->nome; ?>" style="width: 90%"/>
                         <br /><br />
                        
