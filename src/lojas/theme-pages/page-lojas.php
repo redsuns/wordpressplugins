@@ -32,7 +32,7 @@ get_header(); ?>
                   	<h2><?php echo ucfirst($curitiba->nome); ?></h2> 
                   	<div class="lojas-cidade" >
                     <?php
-                        $dadosLojas = $Lojas->obterLojasPorBairro('Centro');
+                        $dadosLojas = $Lojas->obterLojasPorBairro('Centro','Curitiba');
                       
                         if($dadosLojas)
                       	{?>
