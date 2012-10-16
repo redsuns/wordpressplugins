@@ -15,15 +15,15 @@ $dadosOfertas = $Ofertas->obterOfertas('','ativa');
 	        <div class="conteudo-1005">
 	        <?php while ( have_posts() ) : the_post(); ?>
 	        	<div class="titulo-ofertas">
-		        	<h2>Ofertas</h2>
+		        	<h2>Tablóide de Ofertas</h2>
 	        	</div>
 	        	<div class="conteudo clearfix">
 	        	
                <?php
-               if($dadosOfertas)
+               if ( $dadosOfertas ) 
                {
-                   foreach($dadosOfertas as $ofertas)
-                   {?>
+                   foreach ( $dadosOfertas as $ofertas )
+                   { ?>
                       <div class="oferta">
                           <div class="mes-atual" style="display:none;">
                                 <?php echo $ofertas->mes; ?>  
@@ -33,22 +33,20 @@ $dadosOfertas = $Ofertas->obterOfertas('','ativa');
                               <?php
                                     $count = 1;
                                     $dadosImagens = $Ofertas->obterImagens($ofertas->id);
-                                    foreach($dadosImagens as $imagem)
-                                    {?>
-                                       <img src="./wp-content/uploads/ofertas/<?php echo $imagem->imagem; ?>" 
+                                    foreach ( $dadosImagens as $imagem )
+                                    { ?>
+                                       <img src="<?php echo get_bloginfo('url'); ?>/wp-content/uploads/ofertas/<?php echo $imagem->imagem; ?>" 
                                             title="<?php echo $imagem->imagem; ?>" 
                                             class="img-<?php echo $count ?> ofertas-principal" ;
                                        />      
-                                       
-                                                
                                     <?php 
                                     	$count++;
-                                    }  
-                                      
-                              ?>
+                                    }	?>
+                                    
 								<script type="text/javascript">
 									var qtdImagens = <?php echo $count-1 ?>;
-								</script>                           
+								</script>  
+								                         
                               <div class="prev">Prev</div>
                               <div class="next">Next</div>
                           </div>
@@ -56,26 +54,24 @@ $dadosOfertas = $Ofertas->obterOfertas('','ativa');
                               <?php
                                     $count2 = 1;
                                     $dadosImagens = $Ofertas->obterImagens($ofertas->id);
-                                    foreach($dadosImagens as $imagem)
-                                    {?>
+									
+                                    foreach ( $dadosImagens as $imagem )
+                                    { ?>
                                        <li class="miniatura">
-    
-                                           <img src="./wp-content/uploads/ofertas/thumbs/<?php echo $imagem->imagem; ?>" 
+                                           <img src="<?php echo get_bloginfo('url'); ?>/wp-content/uploads/ofertas/thumbs/<?php echo $imagem->imagem; ?>" 
                                                 title="<?php echo $imagem->imagem; ?>" 
                                                 width="80"
                                                 class="img-thumb-<?php echo $count2 ?>"
                                                  />
                                        </li>
                                     <?php 
-                                    $count2++;
-                                    }    
-                          ?>
+                                    	$count2++;
+                                    } ?>
                           </ul>
                       </div>
                    <?php 
                    }
-               }
-              ?>
+               } ?>
 			
 	        	</div>
     
@@ -84,8 +80,7 @@ $dadosOfertas = $Ofertas->obterOfertas('','ativa');
 	        </div>
         </div>
 
-
-	<script type="text/javascript">
+<script type="text/javascript">
 	var Atual;
 	var cont=1;
 	Atual = ".img-1.ofertas-principal";	
@@ -176,8 +171,6 @@ $dadosOfertas = $Ofertas->obterOfertas('','ativa');
 		});
 	});
 	
-	
-	
-	</script>
+</script>
 			
 <?php get_footer(); ?>
