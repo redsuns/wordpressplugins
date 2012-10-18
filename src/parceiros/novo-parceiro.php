@@ -71,7 +71,7 @@ if(isset($_POST['nome']))
                         <br /><br />
                         
                         Descrição (opcional)<br />
-                        <input type="text" name="descricao" maxlength="255" value="<?php echo @$dadosParceiro->descricao; ?>" style="width: 90%"/>
+                        <textarea rows="6" style="width: 90%;"><?php echo @$dadosParceiro->descricao; ?></textarea>
                         <br /><br />
                         
                         Imagem<br />

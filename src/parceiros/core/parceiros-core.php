@@ -121,7 +121,7 @@
          
      }
      
-      private function editar($dadosParceiros)
+     private function editar($dadosParceiros)
      {
      	if( !eregi('http://', $dadosParceiros->url))
 		{
@@ -133,7 +133,7 @@
                             url='$dadosParceiros->url'
                             where id='$dadosParceiros->id'    
          ";
-         
+         die(print_r($atualizaParceiros));
          $atualizaParceiros = mysql_query($atualizaParceiros) or die('Erro: '.mysql_error());
          
          if(mysql_affected_rows())
@@ -141,11 +141,13 @@
              return true;
          }
 		 
-		 $imagem->nomeImagem = $dadosParceiros->nomeImagem;
-         $imagem->tmp_name = $dadosParceiros->tmp_name;
-         $imagem->idParceiro = $dadosParceiros->id;
-         $this->verificaImagem($imagem);
-         
+		 if ( $dadosParceiros->nomeImagem ) 
+		 {
+		 	 $imagem->nomeImagem = $dadosParceiros->nomeImagem;
+	         $imagem->tmp_name = $dadosParceiros->tmp_name;
+	         $imagem->idParceiro = $dadosParceiros->id;
+	         $this->verificaImagem($imagem);	
+		 }
 		 return true;
          
      }
