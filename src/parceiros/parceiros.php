@@ -39,6 +39,9 @@ if( $dadosParceiros = $Parceiros->obterParceiros() )
                         URL
                     </th>
                     <th>
+                        Descrição
+                    </th>
+                    <th>
                         Imagem
                     </th>
                     <th>
@@ -65,6 +68,9 @@ if( $dadosParceiros = $Parceiros->obterParceiros() )
                     </td>
                     <td>
                         <a href="<?php echo $dadosParceiros->url ; ?>" target="_blank"><?php echo $dadosParceiros->url ; ?></a>
+                    </td>
+                    <td>
+                        <?php echo $dadosParceiros->descricao ; ?>
                     </td>
                     <td>
                         <img src="<?php echo $imagem ; ?>" width="64" />

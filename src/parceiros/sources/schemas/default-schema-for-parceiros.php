@@ -6,10 +6,12 @@
  */
 $parceiros = "CREATE TABLE IF NOT EXISTS parceiros (
                 id int unsigned auto_increment primary key,
-                nome varchar(255),
-                url varchar(255),
-                imagem text
-)";
+                nome varchar(255) COLLATE utf8_unicode_ci,
+                descricao text COLLATE utf8_unicode_ci,
+                url varchar(255) COLLATE utf8_unicode_ci,
+                imagem text COLLATE utf8_unicode_ci
+)
+ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci";
 
 @mysql_query($parceiros);
 

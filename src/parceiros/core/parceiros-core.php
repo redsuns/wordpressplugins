@@ -105,6 +105,7 @@
 		}
          $gravarDadosParceiros = "insert into parceiros set
                                 nome='$dadosParceiros->nome',
+                                descricao='$dadosParceiros->descricao',
                                 url='$dadosParceiros->url'
          ";
          $gravarDadosParceiros = mysql_query($gravarDadosParceiros) or die('Erro: '.mysql_error());
@@ -128,6 +129,7 @@
 		}
          $atualizaParceiros = "update parceiros set 
                             nome='$dadosParceiros->nome',
+                            descricao='$dadosParceiros->descricao',
                             url='$dadosParceiros->url'
                             where id='$dadosParceiros->id'    
          ";

@@ -32,6 +32,7 @@ if(isset($_POST['nome']))
 {
     $dadosParceiro->nome = addslashes(isset($_POST['nome']) ? $_POST['nome'] : '');
     $dadosParceiro->url = addslashes(isset($_POST['url']) ? $_POST['url'] : '');
+    $dadosParceiro->descricao = addslashes(isset($_POST['descricao']) ? $_POST['descricao'] : '');
     $dadosParceiro->nomeImagem = @$_FILES['imagem']['name'];
     $dadosParceiro->tmp_name = @$_FILES['imagem']['tmp_name'];
     $dadosParceiro->idParceiro = addslashes(isset($_POST['idParceiro']) ? $_POST['idParceiro'] : '');
@@ -67,6 +68,10 @@ if(isset($_POST['nome']))
                        
                         URL<br />
                         <input type="text" name="url" maxlength="255" value="<?php echo @$dadosParceiro->url; ?>" style="width: 90%"/>
+                        <br /><br />
+                        
+                        Descrição (opcional)<br />
+                        <input type="text" name="descricao" maxlength="255" value="<?php echo @$dadosParceiro->descricao; ?>" style="width: 90%"/>
                         <br /><br />
                         
                         Imagem<br />
