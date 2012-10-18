@@ -8,8 +8,9 @@
 /---------------------------------------------------------/
 2.1
 18/10/2012
-	Adicionado campo para decrição do parceiro e corrigido
+	-> Adicionado campo para decrição do parceiro e corrigido
 	upload ao editar
+	-> Alterada codificação da tabela do banco de dados para utf8_unicode_ci
 
 /---------------------------------------------------------/
 2.1

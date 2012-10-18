@@ -7,6 +7,11 @@
 
 /---------------------------------------------------------/
 1.1
+18/10/2012
+	Alterada codificação das tabelas do banco para utf8_unicode_ci
+		
+/---------------------------------------------------------/
+1.1
 09/10/2012
 	-> Corrigida listagem de lojas do Centro da cidade principal
 		Antes da alteração apareciam as lojas do centro de todas

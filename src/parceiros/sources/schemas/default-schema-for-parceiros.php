@@ -15,8 +15,10 @@ ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci";
 
 @mysql_query($parceiros);
 
+/*
 $popularTabela = "insert into parceiros set nome='teste', url='http://redsuns.com.br', imagem=''";
 for($cont = 0; $cont < 10; $cont++)
 {
-    //mysql_query($popularTabela);
+    mysql_query($popularTabela);
 }
+*/

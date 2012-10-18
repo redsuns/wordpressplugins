@@ -1,6 +1,6 @@
 <?php
 
-$ofertas = "CREATE TABLE IF NOT EXISTS ofertas (
+$ofertas = "CREATE TABLE IF NOT EXISTS rs_ofertas (
                 id int unsigned auto_increment primary key,
                 mes varchar(255) COLLATE utf8_unicode_ci,
                 ciclo varchar(255) COLLATE utf8_unicode_ci,
@@ -10,7 +10,7 @@ $ofertas = "CREATE TABLE IF NOT EXISTS ofertas (
 
 @mysql_query($ofertas);
 
-$imagens = "CREATE TABLE IF NOT EXISTS imagens_ofertas (
+$imagens = "CREATE TABLE IF NOT EXISTS rs_imagens_ofertas (
 				id int unsigned auto_increment primary key,
 				id_oferta int unsigned,
 				imagem text 
