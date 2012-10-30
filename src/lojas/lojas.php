@@ -44,6 +44,9 @@ if( $dadosLojas = $Lojas->obterLojas($ordenacaoBusca) )
                         Endereço
                     </th>
                     <th>
+                        Horário de funcionamento
+                    </th>
+                    <th>
                         Telefone
                     </th>
                     <th>
@@ -67,6 +70,9 @@ if( $dadosLojas = $Lojas->obterLojas($ordenacaoBusca) )
                     </td>
                     <td>
                         <?php echo $dadosLojas->endereco ; ?>
+                    </td>
+                    <td>
+                        <?php echo $dadosLojas->horario_funcionamento ; ?>
                     </td>
                     <td>
                         <?php echo $dadosLojas->telefone ; ?>

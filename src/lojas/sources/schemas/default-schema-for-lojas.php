@@ -9,6 +9,7 @@ $lojas = "CREATE TABLE IF NOT EXISTS lojas (
                 id int unsigned auto_increment primary key,
                 nome varchar(255) COLLATE utf8_unicode_ci,
                 endereco varchar(255) COLLATE utf8_unicode_ci,
+                horario_funcionamento varchar(100) COLLATE utf8_unicode_ci,
                 cidade varchar(255) COLLATE utf8_unicode_ci,
                 telefone varchar(255) COLLATE utf8_unicode_ci,
                 farmacia_popular varchar(255) COLLATE utf8_unicode_ci

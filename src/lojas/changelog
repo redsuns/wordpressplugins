@@ -7,6 +7,11 @@
 
 /---------------------------------------------------------/
 1.1
+30/10/2012
+	Adicionada possibilidade de cadastrar horário de funcionamento
+
+/---------------------------------------------------------/
+1.1
 18/10/2012
 	Alterada codificação das tabelas do banco para utf8_unicode_ci
 		

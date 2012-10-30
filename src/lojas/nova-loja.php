@@ -19,6 +19,7 @@ if(isset($_POST['nome']) && isset($_POST['cidade']))
 {
     $dadosLoja->nome = addslashes(isset($_POST['nome']) ? $_POST['nome'] : '');
     $dadosLoja->endereco = addslashes(isset($_POST['endereco']) ? $_POST['endereco'] : '');
+    $dadosLoja->horario_funcionamento = addslashes(isset($_POST['horario_funcionamento']) ? $_POST['horario_funcionamento'] : '');
     $dadosLoja->telefone = addslashes(isset($_POST['telefone']) ? $_POST['telefone'] : '');
     $dadosLoja->cidade = addslashes(isset($_POST['cidade']) ? $_POST['cidade'] : '');
     $dadosLoja->farmaciaPopular = addslashes(isset($_POST['farmaciaPopular']) ? $_POST['farmaciaPopular'] : '');
@@ -55,6 +56,10 @@ if(isset($_POST['nome']) && isset($_POST['cidade']))
                        
                         Endereço<br />
                         <input type="text" name="endereco" maxlength="255" value="<?php echo @$dadosLoja->endereco; ?>" style="width: 90%"/>
+                        <br /><br />
+                        
+                        Horário de funcionamento<br />
+                        <input type="text" name="horario_funcionamento" maxlength="100" value="<?php echo @$dadosLoja->horario_funcionamento; ?>" style="width: 90%"/>
                         <br /><br />
                         
                         Cidade<br />

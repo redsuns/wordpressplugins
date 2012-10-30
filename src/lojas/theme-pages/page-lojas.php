@@ -50,6 +50,7 @@ get_header(); ?>
                           <?php }?>
                                    		<p class="endereco"><?php echo $lojas->endereco; ?></p>
                                    		<p class="telefone"><?php echo $lojas->telefone; ?></p>
+                                   		<p class="horario-funcionamento"><?php echo $lojas->horario_funcionamento; ?></p>
                        				</div>
                      <?php  }
                         }?>
