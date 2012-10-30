@@ -13,7 +13,7 @@ $lojas = "CREATE TABLE IF NOT EXISTS lojas (
                 cidade varchar(255) COLLATE utf8_unicode_ci,
                 telefone varchar(255) COLLATE utf8_unicode_ci,
                 farmacia_popular varchar(255) COLLATE utf8_unicode_ci
-)ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_c";
+)ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci";
 
 mysql_query($lojas) or die(mysql_error());
 /*

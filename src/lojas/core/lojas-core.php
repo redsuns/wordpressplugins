@@ -152,6 +152,7 @@
          $gravarDadosLoja = "insert into lojas set
                                 nome='$dadosLoja->nome',
                                 endereco='$dadosLoja->endereco',
+                                horario_funcionamento='$dadosLoja->horario_funcionamento',
                                 telefone='$dadosLoja->telefone',
                                 cidade='$dadosLoja->cidade',
                                 farmacia_popular='$dadosLoja->farmaciaPopular'
@@ -171,6 +172,7 @@
          $atualizaLoja = "update lojas set 
                             nome='$dadosLoja->nome',
                             endereco='$dadosLoja->endereco',
+                            horario_funcionamento='$dadosLoja->horario_funcionamento',
                             telefone='$dadosLoja->telefone',
                             cidade='$dadosLoja->cidade',
                             farmacia_popular='$dadosLoja->farmaciaPopular'
