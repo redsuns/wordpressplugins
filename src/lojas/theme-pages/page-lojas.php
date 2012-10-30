@@ -24,52 +24,51 @@ get_header(); ?>
        	
        	// listando lojas do Centro de Curitiba
        	// Aqui pode ser definida uma cidade qualquer
+
+        // buscando demais bairros de Curitiba, definind que o Centro não se encaixe na pesquisa
+        $dadosBairros = $Lojas->obterBairros('Curitiba','Centro');
+
        	if($dadosCuritiba)
        	{
-           	foreach($dadosCuritiba as $curitiba)
+       		?><div class="conteudo-endereco clearfix"><?php
+           	foreach($dadosCuritiba as $curitiba )
            	{?>
-              	<div class="conteudo-endereco clearfix">
+              	
                   	<h2><?php echo ucfirst($curitiba->nome); ?></h2> 
-                  	<div class="lojas-cidade" >
                     <?php
                         $dadosLojas = $Lojas->obterLojasPorBairro('Centro','Curitiba');
                       
                         if($dadosLojas)
                       	{?>
-                        	<h3>Centro</h3>
+                        	
                            	<?php
                             foreach($dadosLojas as $lojas)
                             {?>
                            <?php  if($lojas->farmacia_popular == 'sim')
                                 {?>
-                                    <div class="box-endereco ativo">
+                                
+
+	<div class="box-endereco ativo">
+
                           <?php }
                                 else 
                                 {?>
                                    	<div class="box-endereco">
                           <?php }?>
+                          				<h3>Centro</h3>
                                    		<p class="endereco"><?php echo $lojas->endereco; ?></p>
                                    		<p class="telefone"><?php echo $lojas->telefone; ?></p>
                                    		<p class="horario-funcionamento"><?php echo $lojas->horario_funcionamento; ?></p>
                        				</div>
                      <?php  }
                         }?>
-                  					</div>
-              		</div>
-              		
            <?php 
            }
-       	}
-
-        // buscando demais bairros de Curitiba, definind que o Centro não se encaixe na pesquisa
-        $dadosBairros = $Lojas->obterBairros('Curitiba','Centro');
-        
-        if($dadosBairros)
+                   if($dadosBairros)
         {
             foreach($dadosBairros as $bairro)
             {?>
-            <div class="conteudo-endereco clearfix">
-                <h3><?php echo ucfirst($bairro->nome); ?>   </h3> 
+                
                 <div class="lojas-cidade" >
                     
                 <?php
@@ -88,25 +87,39 @@ get_header(); ?>
                             <div class="box-endereco">
                         <?php 
                         }?>
+                        		<h3><?php echo ucfirst($bairro->nome); ?>   </h3> 
                                 <p class="endereco"><?php echo $dadosLojasBairros->endereco; ?></p>
                                 <p class="telefone"><?php echo $dadosLojasBairros->telefone; ?></p>
+                                <p class="horario-funcionamento"><?php echo $dadosLojasBairros->horario_funcionamento; ?></p>
                             </div>
-              <?php } ?>
+                            <?php } ?>
                             </div>
-                </div>
             <?php 
             }
-        }
+           ?>
+                  </div>       
+           
+           
+           <?php 
+           
+           
+       	}
 
+
+
+        
+
+        }
+        ?><div class="conteudo-endereco clearfix"><?php
         // buscando por demais cidades, estas cidades não terão distinção entre lojas do centro e de bairros
 		if($dadosCidades)
        	{
            	foreach($dadosCidades as $cidade)
            	{?>
-			<div class="conteudo-endereco clearfix">
-				<h2><?php echo ucfirst($cidade->nome); ?>   </h2> 
-	          	<div class="lojas-cidade" >
-	          	    
+
+				
+	          	<div class="box-endereco" >
+	          	    <h2><?php echo ucfirst($cidade->nome); ?>   </h2> 
 	            <?php
 	             
 					$dadosLojas = $Lojas->obterLojasPorCidade($cidade->nome);
@@ -129,14 +142,16 @@ get_header(); ?>
 		                               	<h3><?php echo $lojas->nome; ?></h3>
 		                               	<p class="endereco"><?php echo $lojas->endereco; ?></p>
 		                               	<p class="telefone"><?php echo $lojas->telefone; ?></p>
+		                               	<p class="horario-funcionamento"><?php echo $lojas->horario_funcionamento; ?></p>
                            			</div>
                        <?php }
                     	}?>
 	          					</div>
-	      		</div>
+
 	   		<?php 
 	   		}
        	}?>
+			</div><br/><br/>
     	<div class="fio"></div>
 </div>
 </div>
