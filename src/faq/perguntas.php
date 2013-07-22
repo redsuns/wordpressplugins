@@ -1,104 +1,48 @@
 <?php
+/**
+ * @since 1.0
+ */
 
-include_once 'core/faq-core.php';
-
-$Faq = new Faq();
-
-if(isset($_GET['acao']) && is_numeric($_GET['id_faq']))
-{
-    if($_GET['acao'] == 'remover')
-    {
-        $idRemover = (int)$_GET['id_faq'];
-        if( $Faq->remover($idRemover) )
-        {
-        ?>
-            <script type="text/javascript">
-                alert('Pergunta removida com sucesso!');
-                window.location.href="?page=faq/perguntas.php";
-            </script>
-         <?php
-        }
+if (isset($_GET['id_faq']) && !empty($_GET['id_faq']) && $_GET['acao'] == 'remover') {
+    if (wp_delete_post($_GET['id_faq'])) {
+        echo '<script>alert("Faq removido com sucesso!"); window.location.href="?page=faq/perguntas.php";</script>';
     }
 }
 
-$ordenacaoBusca->campo = 'id';
-$ordenacaoBusca->ordem = 'desc';
+if ($dadosFaq = get_posts(array('post_type' => 'faq'))) :  ?>
 
-if( $dadosFaq = $Faq->obterListaFaq($ordenacaoBusca) )
-{
-?>
-
-<h3>Listando as Perguntas e respostas (FAQ) já cadastradas</h3>
-<br />
+    <h3>Listando as Perguntas e respostas (FAQ) já cadastradas</h3>
+    <br />
 
     <table class="wp-list-table widefat fixed pages" cellspacing="0" style="width:95%;">
-            <thead>
-                <tr>
-                    <th>
-                        ID
-                    </th>
-                    <th>
-                        Pergunta
-                    </th>
-                    <th>
-                        Solução
-                    </th>
-                    <th>
-                        Ações
-                    </th>
-                 </tr>
-            </thead>
-            <tbody>
-                <?php 
-                foreach($dadosFaq as $dadosFaq){
-                    
-                    $imagem = '../wp-content/plugins/faq/sources/images/no-image.png';
-                    if( $dadosFaq->imagem != '' )
-                    {
-                        $imagem = 'wp-content/uploads/faq/'.$dadosFaq->imagem;
-                    }
-                ?>
+        <thead>
+            <tr>
+                <th>Pergunta</th>
+                <th>Solução</th>
+                <th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+    <?php foreach ($dadosFaq as $dadosFaq) { ?>
                 <tr>
                     <td>
-                        <?php echo (int)$dadosFaq->id ; ?>
+        <?php echo $dadosFaq->post_title; ?>
                     </td>
                     <td>
-                        <?php echo $dadosFaq->pergunta ; ?>
+        <?php echo $dadosFaq->post_content; ?>
                     </td>
                     <td>
-                        <?php echo $dadosFaq->solucao ; ?>
+                        <a href="?page=faq/nova-pergunta.php&id_faq=<?php echo (int) $dadosFaq->ID; ?>">Editar</a> |
+                        <a href="?page=faq/perguntas.php&acao=remover&id_faq=<?php echo (int) $dadosFaq->ID; ?>" 
+                           onclick="return confirm('Deseja realmente remover este FAQ?')">Remover</a>
                     </td>
-                    <!--<td>
-                        <img src="<?php echo $imagem ; ?>" width="64" />
-                    </td> -->
-                    <td>
-                        <a href="?page=faq/nova-pergunta.php&id_faq=<?php echo (int)$dadosFaq->id; ?>">Editar</a> |
-                        <a href="?page=faq/perguntas.php&acao=remover&id_faq=<?php echo (int)$dadosFaq->id; ?>" onclick="return confirmaRemocao();">Remover</a>
-                    </td>
-                 </tr>
-                 <?php
-                 }
-                 ?>
-            </tbody>
-        </table>
-<?php    
-}
-else 
-{
-    echo "<h3>No momento não há Perguntas e respostas (FAQ) cadastradas</h3>";	
-}
-?>
-<script type="text/javascript">
-    function confirmaRemocao()
-    {
-        var decisao = confirm('Deseja realmente remover esta pergunta??');
-        if(decisao)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
-    }
-</script>
+                </tr>
+                <?php
+            }
+            ?>
+        </tbody>
+    </table>
+    <?php
+else :
+    echo "<h3>No momento não há Perguntas e respostas (FAQ) cadastradas</h3>";
+        endif;
